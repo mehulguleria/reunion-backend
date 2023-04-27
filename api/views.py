@@ -13,11 +13,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class UserAPIView(APIView):
     def get_permissions(self):
-        return (IsOwnerorReadOnly(),IsAuthenticated())
+        return (IsAuthenticated())
     
-    def get(self,request):
+    def get(self,request,user):
         self.check_permissions(request)
-        user = User.objects.get(id=request.user.id)
+        user = User.objects.get(username=user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 

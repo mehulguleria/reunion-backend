@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'reunion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'socialmedia_khs4',
+        'USER': 'mehul',
+        'PORT': 5432,
+        'HOST': 'dpg-ch5648ak728glsk7ap00-a.singapore-postgres.render.com',
+        'PASSWORD': '7Y0HIDcqjMLJhcOUoh17FxBvpl4XtX31'
     }
 }
 

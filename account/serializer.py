@@ -8,6 +8,7 @@ class LoginSerializer(serializers.Serializer):
 
     email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True)
+    username = serializers.CharField(write_only=True)
     token = serializers.JSONField(read_only=True)
 
     def get_token(self, validated_data):
@@ -22,6 +23,7 @@ class LoginSerializer(serializers.Serializer):
     def create(self, validated_data):
         email = validated_data['email']
         password = validated_data['password']
+        username = validated_data['username']
 
         if User.objects.filter(email=email).exists():
             user = authenticate(username=email, password=password)
@@ -30,7 +32,7 @@ class LoginSerializer(serializers.Serializer):
             else:
                 raise serializers.ValidationError('Invalid password')
         else:
-            user = User.objects.create_user(email=email, password=password)
+            user = User.objects.create_user(email=email, password=password, username=username)
             return {'token':self.get_token(validated_data)}
 
 

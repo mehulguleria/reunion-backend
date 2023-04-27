@@ -9,7 +9,7 @@ urlpatterns = [
     path('',include('account.urls')),
 
     #user profile url.
-    path('user',require_http_methods(['GET'])(views.UserAPIView.as_view()), name="userapi"),
+    path('<str:user>',require_http_methods(['GET'])(views.UserAPIView.as_view()), name="userapi"),
 
     #post related urls.
     path('posts/',require_http_methods(['POST'])(views.PostAPIView.as_view()), name="createpostapi"),
